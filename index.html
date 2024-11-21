@@ -9,12 +9,14 @@
     <title>Wiki - Bot de Discord</title>
     <style>
         :root {
-            --primary-color: #5b5fcf;
-            --secondary-color: #444;
-            --text-color: #333;
-            --bg-color: #f4f4f9;
+            --primary-color: #ff007f; /* Rosa brillante RGB */
+            --secondary-color: #222831; /* Negro carbón */
+            --text-color: #f8f8f2; /* Blanco suave */
+            --bg-color: #1a1a2e; /* Azul noche */
+            --accent-color: #00d1ff; /* Cian brillante */
+            --highlight-color: #7fff00; /* Verde neón */
         }
-
+    
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
@@ -23,15 +25,17 @@
             color: var(--text-color);
             line-height: 1.6;
         }
-
+    
         .header {
             background-color: var(--primary-color);
             color: white;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            font-weight: bold;
         }
-
+    
         .menu {
             display: flex;
             justify-content: center;
@@ -40,79 +44,87 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
-
+    
         .menu button {
             background: none;
-            color: white;
-            border: none;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
             margin: 0 15px;
             padding: 12px 25px;
             cursor: pointer;
             font-size: 16px;
+            font-weight: bold;
             transition: all 0.3s ease;
             border-radius: 5px;
         }
-
+    
         .menu button:hover {
-            background-color: var(--primary-color);
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
             transform: translateY(-2px);
+            box-shadow: 0 0 10px var(--accent-color);
         }
-
+    
         .menu button.active {
-            background-color: var(--primary-color);
+            background-color: var(--highlight-color);
+            color: var(--secondary-color);
+            box-shadow: 0 0 10px var(--highlight-color);
         }
-
+    
         .content {
             max-width: 800px;
             margin: 30px auto;
-            background: #fff;
+            background: var(--secondary-color);
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
             min-height: 400px;
+            color: var(--text-color);
         }
-
+    
         .hidden {
             display: none;
         }
-
+    
         footer {
             text-align: center;
             padding: 20px;
             background-color: var(--secondary-color);
-            color: white;
+            color: var(--text-color);
             margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
         }
-
+    
         /* Animaciones */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
+    
         .fade-in {
             animation: fadeIn 0.5s ease-in;
         }
-
+    
         /* Responsive */
         @media (max-width: 600px) {
             .menu {
                 flex-direction: column;
                 align-items: center;
             }
-
+    
             .menu button {
                 margin: 5px 0;
                 width: 90%;
             }
-
+    
             .content {
                 margin: 20px 10px;
                 padding: 15px;
             }
         }
-
+    
         /* Nuevos estilos */
         .feature-grid {
             display: grid;
@@ -120,73 +132,77 @@
             gap: 20px;
             margin: 20px 0;
         }
-
+    
         .feature-card {
-            background: #f8f9fa;
+            background: var(--bg-color);
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
+    
         .feature-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 0 15px var(--accent-color);
         }
-
+    
         .command-table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
+            background: var(--secondary-color);
         }
-
+    
         .command-table th,
         .command-table td {
             padding: 12px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--accent-color);
             text-align: left;
         }
-
+    
         .command-table th {
             background-color: var(--primary-color);
-            color: white;
+            color: var(--text-color);
         }
-
+    
         .command-table tr:nth-child(even) {
-            background-color: #f8f9fa;
+            background-color: var(--bg-color);
         }
-
+    
         .discord-button {
             display: inline-block;
             padding: 12px 24px;
-            background-color: #5865F2;
-            color: white;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
             text-decoration: none;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
             margin: 10px 5px;
+            font-weight: bold;
         }
-
+    
         .discord-button:hover {
-            background-color: #4752C4;
+            background-color: var(--highlight-color);
+            box-shadow: 0 0 10px var(--highlight-color);
         }
-
+    
         .alert {
             padding: 15px;
             margin: 15px 0;
             border-radius: 5px;
             border-left: 4px solid;
         }
-
+    
         .alert-info {
-            background-color: #e3f2fd;
-            border-color: #2196f3;
+            background-color: rgba(0, 150, 255, 0.2);
+            border-color: var(--accent-color);
         }
-
+    
         .alert-warning {
-            background-color: #fff3e0;
-            border-color: #ff9800;
+            background-color: rgba(255, 165, 0, 0.2);
+            border-color: var(--highlight-color);
         }
-    </style>
+    </style>    
 </head>
 <body>
     <header class="header">
@@ -398,13 +414,13 @@
             
             <div class="quick-links">
                 <a href="https://discord.com/privacy" class="discord-button" target="_blank">Política de Privacidad de Discord</a>
-                <a href="mailto:soporte@tubot.com" class="discord-button">Contactar Soporte</a>
+                <a href="mailto:sordoware@gmail.com" class="discord-button">Contactar Soporte</a>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2024 Tu Bot de Discord. Todos los derechos reservados.</p>
+        <p>© 2024 Colette’s Correccional. Todos los derechos reservados.</p>
         <p>Versión 1.0.0 | <a href="#" onclick="showPage('tos')">Términos</a> | <a href="#" onclick="showPage('privacy')">Privacidad</a></p>
     </footer>
 
