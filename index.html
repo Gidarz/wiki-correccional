@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wiki oficial del Bot de Discord - Términos de servicio y políticas de privacidad">
+    <title>Wiki - Bot de Discord</title>
+    <style>
+        :root {
+            --primary-color: #5b5fcf;
+            --secondary-color: #444;
+            --text-color: #333;
+            --bg-color: #f4f4f9;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            background-color: var(--secondary-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .menu button {
+            background: none;
+            color: white;
+            border: none;
+            margin: 0 15px;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .menu button:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .menu button.active {
+            background-color: var(--primary-color);
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            min-height: 400px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            margin-top: 40px;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .menu {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu button {
+                margin: 5px 0;
+                width: 90%;
+            }
+
+            .content {
+                margin: 20px 10px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Wiki - Bot de Discord</h1>
+        <p>Documentación oficial y políticas</p>
+    </header>
+
+    <nav class="menu">
+        <button onclick="showPage('home')" class="active">Inicio</button>
+        <button onclick="showPage('tos')">Términos de Servicio</button>
+        <button onclick="showPage('privacy')">Políticas de Privacidad</button>
+    </nav>
+
+    <main class="content">
+        <section id="home" class="fade-in">
+            <h2>Bienvenido a la Wiki Oficial</h2>
+            <p>Aquí encontrarás toda la información importante sobre nuestro Bot de Discord.</p>
+            <div class="quick-links">
+                <h3>Enlaces Rápidos:</h3>
+                <ul>
+                    <li><a href="https://discord.com/api/oauth2/authorize?client_id=1297994769951227947&permissions=8&scope=bot" target="_blank">Invitar Bot</a></li>
+                    <li><a href="https://discord.gg/tu-servidor" target="_blank">Servidor de Soporte</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="tos" class="hidden">
+            <h2>Términos de Servicio</h2>
+            <p>Última actualización: 21 de noviembre de 2024</p>
+            <p>El bot está diseñado exclusivamente para su uso en servidores de Discord. Los usuarios deben respetar las normas de Discord y cualquier otra regla impuesta por los administradores del servidor donde se utilice el bot.</p>
+            <p>No nos hacemos responsables de cualquier mal uso del bot o de daños causados directa o indirectamente por su uso. El bot se proporciona "tal cual" y no garantizamos que siempre esté disponible o libre de errores.</p>
+        </section>
+
+        <section id="privacy" class="hidden">
+            <h2>Políticas de Privacidad</h2>
+            <p>Última actualización: 21 de noviembre de 2024</p>
+            <p>Respetamos tu privacidad. El bot no recopila datos personales sin tu consentimiento. Toda la información proporcionada a través del bot será utilizada únicamente para el propósito de mejorar el servicio.</p>
+            <p>No compartimos ni vendemos información personal a terceros. Si tienes dudas sobre nuestra política de privacidad, contáctanos a <a href="mailto:soporte@tubot.com">soporte@tubot.com</a>.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Tu Bot de Discord. Todos los derechos reservados.</p>
+        <p>Versión 1.0.0</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // Remover clase active de todos los botones
+            document.querySelectorAll('.menu button').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Añadir clase active al botón seleccionado
+            event.target.classList.add('active');
+
+            // Ocultar todas las secciones
+            document.querySelectorAll('main > section').forEach(section => {
+                section.classList.add('hidden');
+                section.classList.remove('fade-in');
+            });
+
+            // Mostrar la sección seleccionada con animación
+            const selectedSection = document.getElementById(pageId);
+            selectedSection.classList.remove('hidden');
+            selectedSection.classList.add('fade-in');
+        }
+
+        // Mostrar la página de inicio por defecto
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
